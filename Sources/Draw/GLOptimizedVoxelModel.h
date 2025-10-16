@@ -104,6 +104,8 @@ namespace spades {
 			AABB3 GetBoundingBox() override { return boundingBox; }
 
 			virtual void RenderOutlinesPass(std::vector<client::ModelRenderParam> params);
+			virtual void RenderOutlinesPass(std::vector<client::ModelRenderParam> params,
+			                                Vector3 outlineColor, bool fog, bool farRender);
 			virtual void RenderOccludedPass(std::vector<client::ModelRenderParam> params);
 			virtual void RenderOcclusionTestPass(std::vector<client::ModelRenderParam> params);
 		};

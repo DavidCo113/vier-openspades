@@ -52,6 +52,8 @@ namespace spades {
 			                                    std::vector<GLDynamicLight> lights) = 0;
 
 			virtual void RenderOutlinesPass(std::vector<client::ModelRenderParam> params) = 0;
+			virtual void RenderOutlinesPass(std::vector<client::ModelRenderParam> params,
+				Vector3 outlineColor, bool fog, bool farRender) = 0;
 			virtual void RenderOccludedPass(std::vector<client::ModelRenderParam> params) = 0;
 			virtual void RenderOcclusionTestPass(std::vector<client::ModelRenderParam> params) = 0;
 

@@ -68,6 +68,14 @@ DEFINE_SPADES_SETTING(cg_serverAlert, "1");
 DEFINE_SPADES_SETTING(cg_skipDeadPlayersWhenDead, "0");
 
 SPADES_SETTING(cg_playerName);
+
+DEFINE_SPADES_SETTING(cg_textures, "0");
+DEFINE_SPADES_SETTING(cg_multiTextures, "0");
+DEFINE_SPADES_SETTING(cg_outlines, "0");
+DEFINE_SPADES_SETTING(cg_textureStrength, "25");
+DEFINE_SPADES_SETTING(cg_multiTextureStrength, "25");
+DEFINE_SPADES_SETTING(cg_outlineStrength, "2");
+
 DEFINE_SPADES_SETTING(cg_mentionWord);
 DEFINE_SPADES_SETTING(cg_ignoreChatMessages, "0");
 DEFINE_SPADES_SETTING(cg_ignorePrivateMessages, "0");

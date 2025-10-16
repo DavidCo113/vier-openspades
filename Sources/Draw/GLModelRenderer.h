@@ -60,6 +60,7 @@ namespace spades {
 			void RenderSunlightPass(bool ghostPass);
 			void RenderDynamicLightPass(std::vector<GLDynamicLight> lights);
 
+			void RenderOutlinesPass();
 			void DetermineVisiblePlayers(bool visiblePlayers[]);
 			void RenderNonOccludedPlayers(bool visiblePlayers[], std::vector<GLDynamicLight> lights);
 			void RenderOccludedPlayers(bool visiblePlayers[]);

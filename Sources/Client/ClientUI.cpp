@@ -338,7 +338,7 @@ namespace spades {
 		bool ClientUI::isIgnored(const std::string &key) {
 			return !ignoreInput.empty() && EqualsIgnoringCase(ignoreInput, key);
 		}
-		void ClientUI::setIgnored(const std::string &key) { ignoreInput = key; }
+		void ClientUI::setIgnored(const std::string &key) { ; }
 
 		void ClientUI::MapEditorSaveMap() { client->TakeMapShot(true);}
 

@@ -72,6 +72,9 @@
 
 #include "../Imports/OpenGL.h"
 
+SPADES_SETTING(cg_outlines);
+SPADES_SETTING(cg_outlineStrength);
+
 namespace spades {
 	namespace draw {
 		// TODO: raise error for any calls after Shutdown().
@@ -613,7 +616,7 @@ namespace spades {
 			device->EnableVertexAttribArray(colorAttribute(), false);
 		}
 
-		void GLRenderer::RenderObjects() {
+		void GLRenderer::RenderObjects(bool reflections) {
 
 			// draw opaque objects, and do dynamic lighting
 
@@ -691,6 +694,32 @@ namespace spades {
 					mapRenderer->RenderDynamicLightPass(lights);
 				}
 				modelRenderer->RenderDynamicLightPass(lights);
+			}
+
+			if (cg_outlines && !reflections) {
+				GLProfiler::Context p(*profiler, "Outlines Pass");
+
+				device->Enable(IGLDevice::Blend, false);
+				device->Enable(IGLDevice::DepthTest, true);
+				device->Enable(IGLDevice::CullFace, true);
+				device->DepthFunc(IGLDevice::LessOrEqual);
+
+				glCullFace(GL_FRONT);
+				glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+				glEnable(GL_POLYGON_OFFSET_LINE);
+				glPolygonOffset(1, 1);
+				glLineWidth((int)cg_outlineStrength);
+
+				if (!sceneDef.skipWorld && mapRenderer) {
+					mapRenderer->RenderOutlinesPass(Vector3(0, 0, 0));
+				}
+				modelRenderer->RenderOutlinesPass();
+
+				glLineWidth(1);
+				glCullFace(GL_BACK);
+				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+				glPolygonOffset(0, 0);
+				glDisable(GL_POLYGON_OFFSET_LINE);
 			}
 
 			{
@@ -821,7 +850,7 @@ namespace spades {
 
 					// render scene
 					GLProfiler::Context p(*profiler, "Mirrored Objects");
-					RenderObjects();
+					RenderObjects(true);
 
 					// restore matrices
 					std::swap(view, viewMatrix);
@@ -874,7 +903,7 @@ namespace spades {
 
 			if (!sceneDef.allowEsp) {
 				GLProfiler::Context p(*profiler, "Non-mirrored Objects");
-				RenderObjects();
+				RenderObjects(false);
 			} else {
 				device->Enable(IGLDevice::DepthTest, true);
 				device->Enable(IGLDevice::Texture2D, true);

@@ -132,6 +132,21 @@ namespace spades {
 			}
 		}
 
+		void GLModelRenderer::RenderOutlinesPass() {
+			SPADES_MARK_FUNCTION();
+
+			GLProfiler::Context profiler(renderer.GetGLProfiler(),
+			                             "Model [%d model(s), %d unique model type(s)]", modelCount,
+			                             (int)models.size());
+
+			for (size_t i = 0; i < models.size(); i++) {
+				RenderModel &m = models[i];
+				GLModel *model = m.model;
+
+				model->RenderOutlinesPass(m.params, Vector3(0.0f, 0.0f, 0.0f), true, false);
+			}
+		}
+
 		void GLModelRenderer::DetermineVisiblePlayers(bool visiblePlayers[]) {
 			SPADES_MARK_FUNCTION();
 			// determine player visbility via the last frame

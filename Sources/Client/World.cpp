@@ -73,7 +73,7 @@ namespace spades {
 		void World::Advance(float dt) {
 			SPADES_MARK_FUNCTION();
 
-			ApplyBlockActions();
+			/*ApplyBlockActions();*/
 
 			for (const auto &player : players)
 				if (player && !player->IsSpectator())

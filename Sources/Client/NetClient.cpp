@@ -1278,6 +1278,7 @@ namespace spades {
 									  IntVector3::Make(pos.x + x, pos.y + y, pos.z + z));
 						GetWorld()->DestroyBlock(cells);
 					}
+					GetWorld()->ApplyBlockActions();
 				} break;
 				case PacketTypeBlockLine: {
 					stmp::optional<Player &> p = GetPlayerOrNull(reader.ReadByte());
@@ -1306,6 +1307,7 @@ namespace spades {
 						if (p->IsLocalPlayer())
 									client->RegisterPlacedBlocks(blocks);
 					}
+					GetWorld()->ApplyBlockActions();
 				} break;
 				case PacketTypeStateData:
 					if (!GetWorld())

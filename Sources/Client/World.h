@@ -63,6 +63,8 @@ namespace spades {
 				PlayerPersistent() : kills(0) { ; }
 			};
 
+			void ApplyBlockActions();
+
 		private:
 			IWorldListener *listener = nullptr;
 
@@ -90,8 +92,6 @@ namespace spades {
 			std::multimap<float, IntVector3> blockRegenerationQueue;
 			std::unordered_map<IntVector3, std::multimap<float, IntVector3>::iterator>
 			  blockRegenerationQueueMap;
-
-			void ApplyBlockActions();
 
 			bool isMapEditor = false;
 

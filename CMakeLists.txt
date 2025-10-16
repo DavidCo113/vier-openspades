@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8...9.9)
 project(OpenSpades)
 
 set(OpenSpades_VERSION_MAJOR 0)
