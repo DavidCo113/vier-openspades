@@ -1,7 +1,7 @@
 uniform mat4 projectionViewModelMatrix;
 uniform vec3 modelOrigin;
 
-attribute vec4 positionAttribute;
+attribute vec3 positionAttribute;
 
 void main() {
 	
