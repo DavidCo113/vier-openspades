@@ -113,23 +113,23 @@ namespace spades {
 
 			bool lastJump;
 
-			float lastClimbTime;
-			float lastJumpTime;
+			double lastClimbTime;
+			double lastJumpTime;
 
 			// tools
-			float nextSpadeTime;
-			float nextDigTime;
+			double nextSpadeTime;
+			double nextDigTime;
 			bool firstDig;
-			float nextGrenadeTime;
-			float nextBlockTime;
+			double nextGrenadeTime;
+			double nextBlockTime;
 			bool holdingGrenade;
-			float grenadeTime;
+			double grenadeTime;
 			bool blockCursorActive;
 			bool blockCursorDragging;
 			IntVector3 blockCursorPos;
 			IntVector3 blockCursorDragPos;
 			bool lastSingleBlockBuildSeqDone;
-			float lastReloadingTime;
+			double lastReloadingTime;
 			IntVector3 blockCursorIndentPos;
 
 			bool pendingPlaceBlock;
@@ -141,7 +141,7 @@ namespace spades {
 			// notified to client
 			bool reloadingServerSide;
 
-			float respawnTime;
+			double respawnTime;
 
 			void MovePlayer(float fsynctics);
 			void MoveCorpse(float fsynctics);
@@ -228,7 +228,7 @@ namespace spades {
 
 			bool IsAlive();
 			/** @return world time to respawn */
-			float GetRespawnTime() { return respawnTime; }
+			double GetRespawnTime() { return respawnTime; }
 			/** Returns player's health (local player only) */
 			int GetHealth() { return health; }
 
@@ -331,9 +331,9 @@ namespace spades {
 
 			void ShootMapObject() { FireWeapon(); }
 
-			float GetNextBlockTime() { return nextBlockTime; }
-			float GetNextSpadeTime() { return nextSpadeTime; }
-			float GetNextDigTime() { return nextDigTime; }
+			double GetNextBlockTime() { return nextBlockTime; }
+			double GetNextSpadeTime() { return nextSpadeTime; }
+			double GetNextDigTime() { return nextDigTime; }
 		};
 	} // namespace client
 } // namespace spades

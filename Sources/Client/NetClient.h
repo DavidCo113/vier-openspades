@@ -158,9 +158,9 @@ namespace spades {
 				std::unique_ptr<IStream> stream;
 				std::vector<char> data;
 
-				float startTime;
-				float deltaTime;
-				float endTime;
+				double startTime;
+				double deltaTime;
+				double endTime;
 				int countUps;
 				int endUps;
 
@@ -186,10 +186,10 @@ namespace spades {
 
 			void DemoSkipMap();
 			void DemoJoinGame();
-			void DemoSetSkimOfs(float sec_ups, float skipToTime);
+			void DemoSetSkimOfs(float sec_ups, double skipToTime);
 			void DemoSkimEnd();
 			void DemoSkimReadLastFogWorld();
-			bool DemoSkimIgnoreType(int type, float skipToTime);
+			bool DemoSkimIgnoreType(int type, double skipToTime);
 
 			void MapEditorCommands(std::string &);
 			void CommandSetRespawn(std::string &);
@@ -262,7 +262,7 @@ namespace spades {
 			void DemoWriteState();
 			void DemoWriteMap();
 
-			void DemoSkip(float sec);
+			void DemoSkip(double sec);
 			void DemoUps(int ups);
 			void DemoPause(bool unpause = false);
 
@@ -276,8 +276,8 @@ namespace spades {
 				demo.isFirstJoin = false;
 				return b;
 			}
-			float GetDemoDeltaTime() { return demo.deltaTime; }
-			float GetDemoEndTime() { return demo.endTime; }
+			double GetDemoDeltaTime() { return demo.deltaTime; }
+			double GetDemoEndTime() { return demo.endTime; }
 			std::string GetDemoEndTimeStr() { return demo.endTimeStr; }
 
 			void BlockVolumeUndo();

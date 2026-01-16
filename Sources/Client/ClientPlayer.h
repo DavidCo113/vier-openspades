@@ -50,8 +50,8 @@ namespace spades {
 			float aimDownState;
 			float toolRaiseState;
 			Player::ToolType currentTool;
-			float localFireVibrationTime;
-			float time;
+			double localFireVibrationTime;
+			double time;
 
 			/**
 			 * Indicates whether the third-person weapon skin script has the latest

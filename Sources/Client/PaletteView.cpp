@@ -93,7 +93,7 @@ namespace spades {
 		std::string PaletteView::PalettePath(int i) {
 			char filename[256];
 			if (i != -1) {
-				sprintf(filename, "Mapditor/Palettes/%03d.palette", i);
+				sprintf(filename, "MapEditor/Palettes/%03d.palette", i);
 				return filename;
 			}
 
@@ -286,7 +286,7 @@ namespace spades {
 			IntVector3 def = IntVector3::Make(256, 256, 256);
 			int newline = 0;
 			for (int i = 0; i < (int)paletteRow; i++) {
-				for (int j = 1; j < (int)paletteColumn; j += 2) 
+				for (int j = 1; j < (int)paletteColumn; j += 2)
 					colors.push_back(SanitizeCol(((cols[i] * j) / (int)paletteColumn) - 1));
 
 				auto rem = def - cols[i];

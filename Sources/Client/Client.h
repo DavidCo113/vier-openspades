@@ -116,12 +116,12 @@ namespace spades {
 			std::unique_ptr<GameMapWrapper> mapWrapper;
 			Handle<IRenderer> renderer;
 			Handle<IAudioDevice> audioDevice;
-			float time;
+			double time;
 			bool readyToClose;
-			float worldSubFrame;
+			double worldSubFrame;
 
 			int frameToRendererInit;
-			float timeSinceInit;
+			double timeSinceInit;
 
 			MumbleLink mumbleLink;
 
@@ -139,7 +139,7 @@ namespace spades {
 			std::unique_ptr<TCProgressView> tcView;
 
 			Handle<IImage> debugHitTestImage;
-			float lastShotTime;
+			double lastShotTime;
 
 			// chat
 			std::unique_ptr<ChatWindow> chatWindow;
@@ -154,16 +154,17 @@ namespace spades {
 			Player::ToolType lastTool;
 			bool hasLastTool;
 			Vector3 lastFront;
-			float lastPosSentTime;
-			float lastOriSentTime;
+			double lastPosSentTime;
+			double lastOriSentTime;
 			int lastHealth;
-			float lastHurtTime;
-			float lastAliveTime;
+			double lastHurtTime;
+			double lastAliveTime;
 			int lastKills;
-			float worldSetTime;
+			double worldSetTime;
 			bool hasDelayedReload;
 			int shotsCount;
 
+			/* TODO: why the random floats? */
 			int clicksPlayer;
 			float hitsPlayer;
 			int clicksHead;
@@ -228,7 +229,7 @@ namespace spades {
 			float grenadeVibrationSlow;
 			bool scoreboardVisible;
 			bool flashlightOn;
-			float flashlightOnTime;
+			double flashlightOnTime;
 			CoherentNoiseSampler1D coherentNoiseSamplers[3];
 			void KickCamera(float strength);
 
@@ -353,8 +354,8 @@ namespace spades {
 			enum class AlertType { Notice, Warning, Error };
 			AlertType alertType;
 			std::string alertContents;
-			float alertDisappearTime;
-			float alertAppearTime;
+			double alertDisappearTime;
+			double alertAppearTime;
 
 			// Loading screen
 			float mapReceivingProgressSmoothed = 0.0;
@@ -474,7 +475,7 @@ namespace spades {
 				}
 
 				bool uiActive;
-				float skipTo;
+				double skipTo;
 				Vector2 cursor;
 
 				void Initiate() {
@@ -595,8 +596,8 @@ namespace spades {
 
 			void AddTrueAccuracy(bool trueHead) override;
 
-			float GetClientTime() { return time; }
-			float GetClientTimeMultiplied() { return time * demo.speed; }
+			double GetClientTime() { return time; }
+			double GetClientTimeMultiplied() { return time * demo.speed; }
 
 			std::string GetDemoFileName() { return demo.fileName; }
 			void SetDemoFileName(const std::string &str) { demo.fileName = str; }

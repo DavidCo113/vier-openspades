@@ -33,13 +33,13 @@ namespace spades {
 		class Weapon {
 			World &world;
 			Player &owner;
-			float time;
+			double time;
 			bool shooting;
 			bool shootingPreviously;
 			bool reloading;
-			float nextShotTime;
-			float reloadStartTime;
-			float reloadEndTime;
+			double nextShotTime;
+			double reloadStartTime;
+			double reloadEndTime;
 
 			int slowReloadLeftCount;
 
@@ -72,7 +72,7 @@ namespace spades {
 			void SetShooting(bool);
 
 			/** @return true when fired. */
-			bool FrameNext(float);
+			bool FrameNext(float dt);
 
 			/**
 			 * @param initial `true` if the reload was initiated by the user.
@@ -94,7 +94,7 @@ namespace spades {
 			float TimeToNextFire();
 
 			bool IsReadyToShoot();
-			float GetNextShotTime() { return nextShotTime; }
+			double GetNextShotTime() { return nextShotTime; }
 		};
 	} // namespace client
 } // namespace spades

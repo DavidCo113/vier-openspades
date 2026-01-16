@@ -42,7 +42,7 @@ namespace spades {
 
 			bool onGround;
 			IntVector3 groundPos;
-			float groundTime;
+			double groundTime;
 			float rotSpeed;
 
 		public:

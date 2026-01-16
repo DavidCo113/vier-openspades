@@ -3,6 +3,7 @@
 
 # paks
 *.pak
+!NotoFonts.pak
 DevPaks*.zip
 OpenSpadesDevPackage-*.zip
 

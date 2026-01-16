@@ -268,7 +268,7 @@ namespace spades {
 
 						// Hurt effect
 						{
-							float wTime = world->GetTime();
+							double wTime = world->GetTime();
 							if (wTime < lastHurtTime + .15f && wTime >= lastHurtTime) {
 								float per = 1.f - (wTime - lastHurtTime) / .15f;
 								per *= .5f - player.GetHealth() / 100.f * .3f;
@@ -1070,7 +1070,7 @@ namespace spades {
 					renderer->AddDebugLine(MakeVector3(x + dx, y     , z     ), MakeVector3(x + dx, y + dy, z     ), col);
 					renderer->AddDebugLine(MakeVector3(x + dx, y     , z + dz), MakeVector3(x + dx, y + dy, z + dz), col);
 
-					renderer->AddDebugLine(MakeVector3(x     , y     , z     ), MakeVector3(x     , y     , z + dz), col);	
+					renderer->AddDebugLine(MakeVector3(x     , y     , z     ), MakeVector3(x     , y     , z + dz), col);
 					renderer->AddDebugLine(MakeVector3(x     , y + dy, z     ), MakeVector3(x     , y + dy, z + dz), col);
 					renderer->AddDebugLine(MakeVector3(x + dx, y     , z     ), MakeVector3(x + dx, y     , z + dz), col);
 					renderer->AddDebugLine(MakeVector3(x + dx, y + dy, z     ), MakeVector3(x + dx, y + dy, z + dz), col);

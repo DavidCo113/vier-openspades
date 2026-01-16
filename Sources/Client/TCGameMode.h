@@ -44,7 +44,7 @@ namespace spades {
 
 				float progressBasePos;
 				float progressRate;
-				float progressStartTime;
+				double progressStartTime;
 
 				Territory(TCGameMode &mode) : mode{mode} {}
 

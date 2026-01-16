@@ -360,7 +360,7 @@ namespace spades {
 
 			float scrWidth = renderer->ScreenWidth();
 			float scrHeight = renderer->ScreenHeight();
-			float wTime = world->GetTime();
+			double wTime = world->GetTime();
 			Player &p = GetWorld()->GetLocalPlayer().value();
 			if (wTime < lastHurtTime + .35f && wTime >= lastHurtTime) {
 				float per = (wTime - lastHurtTime) / .35f;
@@ -437,11 +437,7 @@ namespace spades {
 		void Client::DrawDebugAim() {
 			SPADES_MARK_FUNCTION();
 
-			// float scrWidth = renderer->ScreenWidth();
-			// float scrHeight = renderer->ScreenHeight();
-			// float wTime = world->GetTime();
 			Player &p = GetCameraTargetPlayer();
-			// IFont *font;
 
 			Weapon &w = p.GetWeapon();
 			float spread = w.GetSpread();
@@ -1145,7 +1141,7 @@ namespace spades {
 			size *= 0.9f;
 
 			auto pos = Vector2(curX, curY - size.y);
-			//y - size.y put the "anchor" point at the bottom so cursorpos ui doesnt overlap with build icons 
+			//y - size.y put the "anchor" point at the bottom so cursorpos ui doesnt overlap with build icons
 
 			renderer->SetColorAlphaPremultiplied(Vector4(0.f, 0.f, 0.f, 0.5f * (float)cg_hudTransparency));
 			renderer->DrawImage(nullptr, AABB2(pos.x, pos.y, size.x, size.y));
@@ -1357,7 +1353,6 @@ namespace spades {
 			SPADES_MARK_FUNCTION();
 
 			Player &p = GetWorld()->GetLocalPlayer().value();
-			// float scrWidth = renderer->ScreenWidth();
 			float scrHeight = renderer->ScreenHeight();
 
 			std::string str = std::to_string(p.GetHealth());
@@ -1606,18 +1601,18 @@ namespace spades {
 			}
 
 			if (cg_statsColor) {
-				font.DrawShadow(fpsStr, pos + Vector2(margin, margin), 
+				font.DrawShadow(fpsStr, pos + Vector2(margin, margin),
 				1.f, fpsColor, Vector4(0.f, 0.f, 0.f, 0.5f * (float)cg_statsTransparency));
-			
-				font.DrawShadow(upsStr, pos + Vector2(margin, margin) + 
+
+				font.DrawShadow(upsStr, pos + Vector2(margin, margin) +
 				Vector2(font.Measure(fpsStr).x, 0.f), 1.f, upsColor, Vector4(0.f, 0.f, 0.f, 0.5f * (float)cg_statsTransparency));
-			
+
 				font.DrawShadow(pingStr, pos + Vector2(margin, margin) +
-				Vector2(font.Measure(fpsStr).x + font.Measure(upsStr).x, 0.f), 
+				Vector2(font.Measure(fpsStr).x + font.Measure(upsStr).x, 0.f),
 				1.f, pingColor, Vector4(0.f, 0.f, 0.f, 0.5f * (float)cg_statsTransparency));
-			
-				font.DrawShadow(updownStr, pos + Vector2(margin, margin) + Vector2(font.Measure(fpsStr).x + 
-				font.Measure(upsStr).x + font.Measure(pingStr).x, 0.f), 1.f, 
+
+				font.DrawShadow(updownStr, pos + Vector2(margin, margin) + Vector2(font.Measure(fpsStr).x +
+				font.Measure(upsStr).x + font.Measure(pingStr).x, 0.f), 1.f,
 				Vector4(1.f, 1.f, 1.f, (float)cg_statsTransparency), Vector4(0.f, 0.f, 0.f, 0.5f * (float)cg_statsTransparency));
 				return;
 			}
@@ -1674,7 +1669,7 @@ namespace spades {
 				pos += Vector2(6, 4);
 				renderer->SetColorAlphaPremultiplied(MakeVector4(0.6f, 0.6f, 0.6f, 0.4f * (float)cg_hudTransparency));
 				renderer->DrawImage(img, AABB2(pos.x, pos.y, sizeP, 10.f));
-				
+
 				if (demo.uiActive) {
 					//draw cursor
 					Handle<IImage> cursor = renderer->RegisterImage("Gfx/Limbo/Cursor.png");

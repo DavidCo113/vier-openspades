@@ -2750,7 +2750,7 @@ namespace spades {
 			pers.name = (std::string)cg_playerName;
 		}
 
-		void NetClient::DemoSetSkimOfs(float sec_ups, float skipToTime) {
+		void NetClient::DemoSetSkimOfs(float sec_ups, double skipToTime) {
 			SPADES_MARK_FUNCTION();
 			if (sec_ups < 0)
 				demo.deltaTime = demo.countUps = 0;
@@ -2796,7 +2796,7 @@ namespace spades {
 			demo.lastFogColour.clear();
 		}
 
-		bool NetClient::DemoSkimIgnoreType(int type, float skipToTime) {
+		bool NetClient::DemoSkimIgnoreType(int type, double skipToTime) {
 			if (ignore.IsInPktTypes(type)) {
 				return true;
 			}
@@ -2808,7 +2808,7 @@ namespace spades {
 			}
 			if (type == PacketTypeGrenadePacket) {
 				float fuse = demo.data[2];
-				float fuseEnd = demo.deltaTime + fuse;
+				double fuseEnd = demo.deltaTime + fuse;
 				if (skipToTime <= fuseEnd) {
 					return false;
 				}
@@ -2852,12 +2852,12 @@ namespace spades {
 			DemoSkimEnd();
 		}
 
-		void NetClient::DemoSkip(float sec) {
+		void NetClient::DemoSkip(double sec) {
 			SPADES_MARK_FUNCTION();
 			if (sec == 0)
 				return;
 
-			float skipToTime = demo.deltaTime + sec;
+			double skipToTime = demo.deltaTime + sec;
 			if (skipToTime > demo.endTime) {
 				skipToTime = demo.endTime;
 			} else if (skipToTime < 0) {
@@ -2872,7 +2872,7 @@ namespace spades {
 				GetWorld()->Advance(skipToTime - demo.deltaTime);
 
 			demo.skimming = true;
-			float beforeTime = demo.deltaTime;
+			double beforeTime = demo.deltaTime;
 			while (demo.deltaTime < skipToTime) {
 				try {
 					DemoReadNextPacket();
@@ -2918,7 +2918,7 @@ namespace spades {
 				GetWorld()->Advance(ups / 60.f);
 
 			demo.skimming = true;
-			float beforeTime = demo.deltaTime;
+			double beforeTime = demo.deltaTime;
 			while (demo.countUps < skipToUps) {
 				try {
 					DemoReadNextPacket();

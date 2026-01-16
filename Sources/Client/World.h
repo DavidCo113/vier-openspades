@@ -73,7 +73,7 @@ namespace spades {
 
 			Handle<GameMap> map;
 			std::unique_ptr<GameMapWrapper> mapWrapper;
-			float time = 0.0f;
+			double time = 0.0f;
 			IntVector3 fogColor;
 			Team teams[3];
 
@@ -100,7 +100,7 @@ namespace spades {
 			~World();
 			const Handle<GameMap> &GetMap() { return map; }
 			GameMapWrapper &GetMapWrapper() { return *mapWrapper; }
-			float GetTime() { return time; }
+			double GetTime() { return time; }
 
 			/** Returns a non-null reference to `GameProperties`. */
 			const std::shared_ptr<GameProperties> &GetGameProperties() { return gameProperties; }

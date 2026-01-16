@@ -20,8 +20,6 @@
 #include "FieldWithHistory.as"
 
 namespace spades {
-	// TODO: Remove cvar editing (superseded by the system console) after 0.1.4
-
 	/** Shows cvar's current value when user types something like "/cg_foobar" */
 	class CommandFieldConfigValueView : spades::ui::UIElement {
 		string[] @configNames;
@@ -253,48 +251,6 @@ namespace spades {
 				@Team3Button.Activated = spades::ui::EventHandler(this.OnTeam3);
 				AddChild(Team3Button);
 			}
-			{
-				spades::ui::Button ClinButton(Manager);
-				ClinButton.Caption = _Tr("Client", "/clin");
-				ClinButton.Bounds = AABB2(winX + winW - 210.f, winY + 72.f, 70.f, 30.f);
-				@ClinButton.Activated = spades::ui::EventHandler(this.OnClin);
-				AddChild(ClinButton);
-			}
-			{
-				spades::ui::Button AccuracyButton(Manager);
-				AccuracyButton.Caption = _Tr("Client", "/client");
-				AccuracyButton.Bounds = AABB2(winX + winW - 140.f, winY + 72.f, 70.f, 30.f);
-				@AccuracyButton.Activated = spades::ui::EventHandler(this.OnAccuracy);
-				AddChild(AccuracyButton);
-			}
-			{
-				spades::ui::Button PingButton(Manager);
-				PingButton.Caption = _Tr("Client", "/ping");
-				PingButton.Bounds = AABB2(winX + winW - 70.f, winY + 72.f, 70.f, 30.f);
-				@PingButton.Activated = spades::ui::EventHandler(this.OnPing);
-				AddChild(PingButton);
-			}
-			{
-				spades::ui::Button RatioButton(Manager);
-				RatioButton.Caption = _Tr("Client", "/ratio");
-				RatioButton.Bounds = AABB2(winX + winW - 70.f, winY + 106.f, 70.f, 30.f);
-				@RatioButton.Activated = spades::ui::EventHandler(this.OnRatio);
-				AddChild(RatioButton);
-			}
-			{
-				spades::ui::Button AnalyzeButton(Manager);
-				AnalyzeButton.Caption = _Tr("Client", "/accuracy");
-				AnalyzeButton.Bounds = AABB2(winX + winW - 140.f, winY + 106.f, 70.f, 30.f);
-				@AnalyzeButton.Activated = spades::ui::EventHandler(this.OnAnalyze);
-				AddChild(AnalyzeButton);
-			}
-			{
-				spades::ui::Button ClientButton(Manager);
-				ClientButton.Caption = _Tr("Client", "/pubovl");
-				ClientButton.Bounds = AABB2(winX + winW - 210.f, winY + 106.f, 70.f, 30.f);
-				@ClientButton.Activated = spades::ui::EventHandler(this.OnOvl);
-				AddChild(ClientButton);
-			}
 
 		}
 
@@ -322,46 +278,6 @@ namespace spades {
 		private void OnCancel(spades::ui::UIElement @sender) {
 			field.Cancelled();
 			Close();
-		}
-
-		private void OnOvl(spades::ui::UIElement@ sender) {
-		   ui.helper.SayTeam("/pubovl");
-		}
-
-		private void OnAnalyze(spades::ui::UIElement@ sender) {
-		   string str = "/analyze ";
-		   field.Text = field.Text + str;
-		   field.Select(GetByteIndexForString(field.Text, str.length));
-		}
-
-		private void OnRatio(spades::ui::UIElement@ sender) {
-		   string str = "/ratio ";
-		   field.Text = field.Text + str;
-		   field.Select(GetByteIndexForString(field.Text, str.length));
-		}
-
-		private void OnClient(spades::ui::UIElement@ sender) {
-		   string str = "/client ";
-		   field.Text = field.Text + str;
-		   field.Select(GetByteIndexForString(field.Text, str.length));
-		}
-
-		private void OnClin(spades::ui::UIElement@ sender) {
-		   string str = "/clin ";
-		   field.Text = field.Text + str;
-		   field.Select(GetByteIndexForString(field.Text, str.length));
-		}
-
-		private void OnPing(spades::ui::UIElement@ sender) {
-		   string str = "/ping ";
-		   field.Text = field.Text + str;
-		   field.Select(GetByteIndexForString(field.Text, str.length));
-		}
-
-		private void OnAccuracy(spades::ui::UIElement@ sender) {
-		   string str = "/accuracy ";
-		   field.Text = field.Text + str;
-		   field.Select(GetByteIndexForString(field.Text, str.length));
 		}
 
 		private void OnTeam1(spades::ui::UIElement@ sender) {
@@ -433,9 +349,6 @@ namespace spades {
 					ui.helper.SayTeam(field.Text);
 				else
 					ui.helper.SayGlobal(field.Text);
-			} else {
-				ui.helper.AlertWarning(_Tr(
-					"Client", "cvar editing via chat window is being phased out (see issue #842)"));
 			}
 			Close();
 		}

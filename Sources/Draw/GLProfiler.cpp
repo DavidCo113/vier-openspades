@@ -535,7 +535,7 @@ namespace spades {
 					std::sprintf(buf + timeColumn, "%7.3fms", time * 1000.);
 					DrawText(buf);
 
-					float subphaseTime = 0.0f;
+					double subphaseTime = 0.0f;
 					for (Phase &subphase : phase.subphases) {
 						if (!subphase.measurementSaved) {
 							continue;
