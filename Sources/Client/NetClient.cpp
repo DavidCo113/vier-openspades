@@ -2515,7 +2515,9 @@ namespace spades {
 			uint64_t pos = demo.stream->GetPosition();
 			unsigned char type;
 			unsigned short len;
-			while (demo.stream->Read(&demo.endTime, sizeof(demo.endTime)) == sizeof(demo.endTime)) {
+			float tmp;
+			while (demo.stream->Read(&tmp, sizeof(tmp)) == sizeof(tmp)) {
+				demo.endTime = tmp;
 				demo.stream->Read(&len, sizeof(len));
 				demo.stream->Read(&type, sizeof(type));
 				demo.stream->SetPosition(demo.stream->GetPosition() + len - sizeof(type));
@@ -2565,8 +2567,10 @@ namespace spades {
 			if (!demo.stream)
 				SPRaise("Demo tried reading null stream");
 
-			if (demo.stream->Read(&demo.deltaTime, sizeof(demo.deltaTime)) == sizeof(demo.deltaTime)) {
+			float tmp;
+			if (demo.stream->Read(&tmp, sizeof(tmp)) == sizeof(tmp)) {
 				unsigned short len;
+				demo.deltaTime = tmp;
 				demo.stream->Read(&len, sizeof(len));
 				demo.data.resize(len);
 
